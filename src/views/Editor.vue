@@ -53,7 +53,15 @@ const save = async (leaving: boolean) => {
   savingLoading.value = false
   if (!leaving && newTitle !== title) router.push(`/editor/${newTitle}`)
 }
-const copy = () => navigator.clipboard.write(text.value.trim() + '🏝️')
+const copy = () =>
+  navigator.clipboard.write(
+    new ClipboardItem({
+      "text/plain": new Blob(
+        [text.value.trim() + '🏝️'],
+        { type: "text/plain" }
+      )
+    })
+  )
 
 const paraNum = computed(
   () => content.value.split('\n').filter((p) => p.length > 0).length

@@ -55,12 +55,12 @@ const save = async (leaving: boolean) => {
 }
 const copy = () =>
   navigator.clipboard.write(
-    new ClipboardItem({
+    [new ClipboardItem({
       "text/plain": new Blob(
         [text.value.trim() + '🏝️'],
         { type: "text/plain" }
       )
-    })
+    })]
   )
 
 const paraNum = computed(
